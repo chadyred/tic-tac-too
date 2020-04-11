@@ -1,0 +1,15 @@
+version: '3'
+services:
+  composer:
+    user: ${UID}
+    image: 'composer:latest'
+    volumes:
+      - .:/src
+    working_dir: /src
+
+  php-cli:
+    user: ${UID}
+    image: php:7.4-cli
+    volumes:
+      - .:/src
+    working_dir: /src

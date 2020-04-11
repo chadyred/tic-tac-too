@@ -1,0 +1,20 @@
+{
+    "name": "chadyred/tic-tac-too",
+    "authors": [
+        {
+            "name": "chadyred",
+            "email": "chadyred@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpspec/phpspec": "^6.1"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
