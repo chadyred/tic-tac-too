@@ -118,4 +118,24 @@ class ResultCalculatorSpec extends ObjectBehavior
         ]);
         $result->shouldBe(false);
     }
+
+    public function it_should_calculate_a_match_in_mutli_column()
+    {
+        $result = $this->calculateMatrix([
+            ["o", 0, 0],
+            ["x", 1, 0],
+            ["o", 2, 0]
+        ]);
+
+        $result->shouldBe(false);
+
+        $result = $this->calculateMatrix([
+            ["o", 0, 1],
+            ["o", 1, 1],
+            ["o", 2, 1]
+
+        ]);
+        $result->shouldBe(true);
+
+    }
 }
