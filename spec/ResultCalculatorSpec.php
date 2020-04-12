@@ -14,7 +14,7 @@ class ResultCalculatorSpec extends ObjectBehavior
 
     function it_should_calculate_any()
     {
-        $result = $this->calculateResult();
+        $result = $this->calculateResult([]);
         $result->shouldBeBool();
     }
 
