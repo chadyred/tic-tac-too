@@ -29,4 +29,13 @@ class ResultCalculatorSpec extends ObjectBehavior
         $result = $this->calculateResult(['x', 'x', 'x']);
         $result->shouldReturn(true);
     }
+
+    function it_should_return_result_even_all_information_is_not_given()
+    {
+        $result = $this->calculateResult(['x', 'x']);
+        $result->shouldReturn(false);
+
+        $result = $this->calculateResult(['x']);
+        $result->shouldReturn(false);
+    }
 }
