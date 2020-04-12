@@ -20,13 +20,13 @@ class ResultCalculatorSpec extends ObjectBehavior
 
     function it_should_return_false_if_line_s_not_complete()
     {
-        $result = $this->calculateResult([['x', 'x', '']]);
+        $result = $this->calculateResult(['x', 'x', '']);
         $result->shouldReturn(false);
     }
 
     function it_should_calculate_return_true_when_a_line_is_done()
     {
-        $result = $this->calculateResult([['x', 'x', 'x']]);
+        $result = $this->calculateResult(['x', 'x', 'x']);
         $result->shouldReturn(true);
     }
 }
