@@ -8,4 +8,5 @@ interface GameInterface
     public function getCurrentPlayer();
     public function playerGiveSymbolAtPosition(string $symbole, int $x, int $y);
     public function getCurrentSymbole();
+    public function addAction(array $action);
 }

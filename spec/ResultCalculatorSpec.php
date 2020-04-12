@@ -4,6 +4,7 @@ namespace spec\App;
 
 use PhpSpec\ObjectBehavior;
 use App\ResultCalculatorInterface;
+use Prophecy\Argument;
 
 class ResultCalculatorSpec extends ObjectBehavior
 {
@@ -52,5 +53,69 @@ class ResultCalculatorSpec extends ObjectBehavior
 
         $result = $this->calculateResultForAGivenSuite(['o', 'x', 'o']);
         $result->shouldReturn(false);
+    }
+
+    public function it_should_calculate_a_full_matrix()
+    {
+        $result = $this->calculateMatrix([[]]);
+        $result->shouldBeBool();
+        $result->shouldBe(false);
+    }
+
+    public function it_should_calculate_a_match_in_the_line_matrix()
+    {
+        $result = $this->calculateMatrix([
+            ["x", 0, 0],
+            ["x", 0, 1],
+            ["x", 0, 2]
+        ]);
+
+        $result->shouldBe(true);
+
+        $result = $this->calculateMatrix([
+            ["o", 0, 0],
+            ["x", 0, 1],
+            ["x", 0, 2]
+        ]);
+        $result->shouldBe(false);
+    }
+
+    public function it_should_calculate_a_match_in_the_colon_of_the_matrix()
+    {
+        $result = $this->calculateMatrix([
+            ["x", 0, 0],
+            ["x", 1, 0],
+            ["x", 2, 0]
+        ]);
+
+        $result->shouldBe(true);
+
+        $result = $this->calculateMatrix([
+            ["o", 0, 0],
+            ["x", 1, 0],
+            ["o", 2, 0]
+        ]);
+        $result->shouldBe(false);
+
+        $result = $this->calculateMatrix([
+            ["x", 0, 0],
+            ["x", 1, 0],
+            ["o", 2, 0]
+        ]);
+        $result->shouldBe(false);
+
+        $result = $this->calculateMatrix([
+            ["o", 0, 0],
+            ["o", 1, 0],
+            ["o", 2, 0]
+        ]);
+        $result->shouldBe(true);
+
+        $result = $this->calculateMatrix([
+            ["x", 0, 0],
+            ["x", 1, 0],
+            ["o", 2, 0]
+        ]);
+        $result->shouldBe(false);
     }
 }

@@ -14,4 +14,31 @@ class ResultCalculator implements ResultCalculatorInterface
 
         return false;
     }
+
+    public function calculateMatrix(array $matrix)
+    {
+        if (!empty($matrix[0])) {
+            $string = [];
+
+            foreach ($matrix as $valuePosxPosy) {
+                $string[$valuePosxPosy[1]][] = $valuePosxPosy[0];
+            }
+
+            if (array_key_exists(0, $string) && $this->calculateResultForAGivenSuite($string[0])) {
+                return true;
+            }
+
+            $string = [];
+
+            foreach ($matrix as $valuePosxPosy) {
+                $string[$valuePosxPosy[2]][] = $valuePosxPosy[0];
+            }
+
+            if (array_key_exists(0, $string) && $this->calculateResultForAGivenSuite($string[0])) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

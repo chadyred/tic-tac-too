@@ -54,7 +54,7 @@ class GameSpec extends ObjectBehavior
         $result->shouldBe($p1);
     }
 
-    public function it_shoulb_allowed_players_to_give_ther_symbol()
+    public function it_should_allowed_players_to_give_ther_symbol()
     {
         $this->playerGiveSymbolAtPosition("x", 0, 0);
         $result = $this->getCurrentSymbole();
@@ -67,5 +67,39 @@ class GameSpec extends ObjectBehavior
         $result = $this->getAllAction();
         $result->shouldBeArray();
         $result->shouldBe([]);
+    }
+
+    public function it_should_add_action_to_game()
+    {
+        $this->addAction([]);
+        $result = $this->getAllAction();
+        $result->shouldBeArray();
+        $result->shouldBe([[]]);
+
+        $this->addAction(["x", 0, 0]);
+
+        $result = $this->getAllAction();
+        $result->shouldBeArray();
+        $result->shouldBe([
+            [],
+            ["x", 0, 0]
+        ]);
+    }
+
+    public function it_should_be_win_by_a_player(
+        ResultCalculatorInterface $calculator,
+        PlayerActionInterface $p1,
+        PlayerActionInterface $p2
+    )
+    {
+        // Stub + Spy + Mock
+        $calculator->calculateResultForAGivenSuite(Argument::any())->willReturn(true);
+
+//        $calculator->beADoubleOf(ResultCalculatorInterface::class); // Could be use as a Fake class to try for exemple data implementation
+        $result = $this->play();
+        $calculator->calculateResultForAGivenSuite(Argument::any())->shouldBeCalled();
+
+        $result->shouldBeBool();
+        $result->shouldBe(true);
     }
 }

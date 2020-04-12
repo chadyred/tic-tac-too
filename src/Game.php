@@ -9,17 +9,17 @@ class Game implements GameInterface
     private $currentPosX;
     private $currentPosY;
     private $resultCalculator;
-    private $allAction;
+    private $allActions;
 
     public function __construct(ResultCalculatorInterface $resultCalculator)
     {
         $this->resultCalculator = $resultCalculator;
-        $this->allAction = [];
+        $this->allActions = [];
     }
 
     public function play()
     {
-        $this->resultCalculator->calculateResultForAGivenSuite([]);
+        return $this->resultCalculator->calculateResultForAGivenSuite([]);
     }
 
     public function getCurrentPlayer()
@@ -48,6 +48,11 @@ class Game implements GameInterface
 
     public function getAllAction()
     {
-        return $this->allAction;
+        return $this->allActions;
+    }
+
+    public function addAction(array $action)
+    {
+        $this->allActions[] = $action;
     }
 }
