@@ -4,7 +4,5 @@ namespace App;
 
 interface ResultCalculatorInterface
 {
-    public function calculateResultForAGivenLine(array $line);
-
-    public function calculateResultForAGivenColumn(array $column);
+    public function calculateResultForAGivenSuite(array $suite);
 }

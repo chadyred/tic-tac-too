@@ -12,85 +12,45 @@ class ResultCalculatorSpec extends ObjectBehavior
         $this->shouldImplement(ResultCalculatorInterface::class);
     }
 
-    function it_should_calculate_any_line()
+    function it_should_calculate_any_suite()
     {
-        $result = $this->calculateResultForAGivenLine([]);
+        $result = $this->calculateResultForAGivenSuite([]);
         $result->shouldBeBool();
     }
 
-    function it_should_return_result_even_all_line_information_is_not_given()
+    function it_should_return_result_even_all_suite_information_is_not_given()
     {
-        $result = $this->calculateResultForAGivenLine(['foo', 'bar']);
+        $result = $this->calculateResultForAGivenSuite(['foo', 'bar']);
         $result->shouldReturn(false);
 
-        $result = $this->calculateResultForAGivenLine(['bob']);
+        $result = $this->calculateResultForAGivenSuite(['bob']);
         $result->shouldReturn(false);
 
-        $result = $this->calculateResultForAGivenLine(['bob', 'alice', 'test', 'foo']);
+        $result = $this->calculateResultForAGivenSuite(['bob', 'alice', 'test', 'foo']);
         $result->shouldReturn(false);
     }
 
-    function it_should_return_false_if_line_is_not_complete()
+    function it_should_return_false_if_suite_is_not_complete()
     {
-        $result = $this->calculateResultForAGivenLine(['x', 'x', '']);
+        $result = $this->calculateResultForAGivenSuite(['x', 'x', '']);
         $result->shouldReturn(false);
     }
 
-    function it_should_calculate_return_true_when_a_line_is_done()
+    function it_should_calculate_return_true_when_a_suite_is_done()
     {
-        $result = $this->calculateResultForAGivenLine(['x', 'x', 'x']);
+        $result = $this->calculateResultForAGivenSuite(['x', 'x', 'x']);
         $result->shouldReturn(true);
 
-        $result = $this->calculateResultForAGivenLine(['o', 'o', 'o']);
-        $result->shouldReturn(true);
-    }
-
-    function it_should_calculate_return_true_when_a_line_is_not_done()
-    {
-        $result = $this->calculateResultForAGivenLine(['x', 'o', 'x']);
-        $result->shouldReturn(false);
-
-        $result = $this->calculateResultForAGivenLine(['o', 'x', 'o']);
-        $result->shouldReturn(false);
-    }
-
-
-    function it_should_calculate_any_column()
-    {
-        $result = $this->calculateResultForAGivenColumn([]);
-        $result->shouldBeBool();
-    }
-
-    function it_should_return_false_if_column_is_not_complete()
-    {
-        $result = $this->calculateResultForAGivenColumn(['x', 'x', '']);
-        $result->shouldReturn(false);
-    }
-
-    function it_should_calculate_return_true_when_a_column_is_done()
-    {
-        $result = $this->calculateResultForAGivenColumn(['x', 'x', 'x']);
-        $result->shouldReturn(true);
-
-        $result = $this->calculateResultForAGivenColumn(['o', 'o', 'o']);
+        $result = $this->calculateResultForAGivenSuite(['o', 'o', 'o']);
         $result->shouldReturn(true);
     }
 
-    function it_should_calculate_return_true_when_a_column_is_not_done()
+    function it_should_calculate_return_true_when_a_suite_is_not_done()
     {
-        $result = $this->calculateResultForAGivenColumn(['x', 'o', 'x']);
+        $result = $this->calculateResultForAGivenSuite(['x', 'o', 'x']);
         $result->shouldReturn(false);
 
-        $result = $this->calculateResultForAGivenColumn(['o', 'x', 'o']);
-        $result->shouldReturn(false);
-    }
-
-    function it_should_return_result_even_all_information_column_is_not_given()
-    {
-        $result = $this->calculateResultForAGivenColumn(['x', 'x']);
-        $result->shouldReturn(false);
-
-        $result = $this->calculateResultForAGivenColumn(['x']);
+        $result = $this->calculateResultForAGivenSuite(['o', 'x', 'o']);
         $result->shouldReturn(false);
     }
 }
