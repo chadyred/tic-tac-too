@@ -21,20 +21,15 @@ class ResultCalculator implements ResultCalculatorInterface
             $string = [];
 
             foreach ($matrix as $valuePosxPosy) {
-                $string[$valuePosxPosy[1]][] = $valuePosxPosy[0];
+                $string['rows'][$valuePosxPosy[1]][] = $valuePosxPosy[0];
+                $string['cols'][$valuePosxPosy[2]][] = $valuePosxPosy[0];
             }
 
-            if (array_key_exists(0, $string) && $this->calculateResultForAGivenSuite($string[0])) {
+            if (array_key_exists('rows', $string) && $this->calculateResultForAGivenSuite($string['rows'][0])) {
                 return true;
             }
 
-            $string = [];
-
-            foreach ($matrix as $valuePosxPosy) {
-                $string[$valuePosxPosy[2]][] = $valuePosxPosy[0];
-            }
-
-            if (array_key_exists(0, $string) && $this->calculateResultForAGivenSuite($string[0])) {
+            if (array_key_exists('cols', $string) && $this->calculateResultForAGivenSuite($string['cols'][0])) {
                 return true;
             }
         }
