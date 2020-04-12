@@ -2,7 +2,7 @@
 
 namespace App;
 
-class PlayerAction implements PlayActionInterface
+class PlayerAction implements PlayerActionInterface
 {
     private $value;
 

@@ -2,7 +2,8 @@
 
 namespace App;
 
-interface PlayActionInterface {
+interface PlayerActionInterface {
     public function valueOfPlayerIs();
+
     public function setValue(string $value);
 }
